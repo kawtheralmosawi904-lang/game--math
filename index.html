@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Challenge Discovery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Tajawal:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button id="lang-toggle" class="lang-btn">EN</button>
+    </div>
+
+    <!-- Sound Toggle -->
+    <div class="sound-toggle">
+        <button id="sound-toggle" class="sound-btn">🔊</button>
+    </div>
+
+    <!-- Intro Screen -->
+    <div id="intro-screen" class="screen active">
+        <div class="intro-content">
+            <h1 class="game-title" data-text="Math Challenge Discovery">Math Challenge Discovery</h1>
+            <p class="subtitle" data-text="Choose your difficulty level">Choose your difficulty level</p>
+            
+            <div class="difficulty-blobs">
+                <div class="blob easy" data-difficulty="easy">
+                    <div class="blob-content">
+                        <span class="blob-icon">🌟</span>
+                        <span class="blob-text" data-text="Easy">Easy</span>
+                    </div>
+                </div>
+                <div class="blob medium" data-difficulty="medium">
+                    <div class="blob-content">
+                        <span class="blob-icon">⚡</span>
+                        <span class="blob-text" data-text="Medium">Medium</span>
+                    </div>
+                </div>
+                <div class="blob hard" data-difficulty="hard">
+                    <div class="blob-content">
+                        <span class="blob-icon">🔥</span>
+                        <span class="blob-text" data-text="Hard">Hard</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+        <div class="game-container">
+            <div class="game-header">
+                <div class="score-display">
+                    <span class="score-label" data-text="Score">Score</span>
+                    <span id="score" class="score-value">0</span>
+                </div>
+                <div class="question-counter">
+                    <span id="question-counter-text">1/10</span>
+                </div>
+            </div>
+
+            <div class="question-area">
+                <div id="question" class="question-text">Loading question...</div>
+                <div class="answer-input-container">
+                    <input type="number" id="answer-input" class="answer-input" placeholder="Your answer">
+                    <button id="submit-btn" class="submit-btn" data-text="Submit">Submit</button>
+                </div>
+            </div>
+
+            <div id="feedback" class="feedback"></div>
+        </div>
+    </div>
+
+    <!-- Result Screen -->
+    <div id="result-screen" class="screen">
+        <div class="result-content">
+            <div id="result-icon" class="result-icon"></div>
+            <h2 id="result-title" class="result-title"></h2>
+            <p id="result-message" class="result-message"></p>
+            <div class="final-score">
+                <span class="score-label" data-text="Final Score">Final Score</span>
+                <span id="final-score" class="score-value">0</span>
+            </div>
+            <button id="continue-btn" class="continue-btn" data-text="Continue">Continue</button>
+        </div>
+    </div>
+
+    <!-- Floating Bubbles Container -->
+    <div id="bubbles-container" class="bubbles-container"></div>
+
+    <!-- Audio Elements -->
+    <audio id="bg-music" loop>
+        <source src="audio/background.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="pop-sound">
+        <source src="audio/pop.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="correct-sound">
+        <source src="audio/correct.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="wrong-sound">
+        <source src="audio/wrong.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

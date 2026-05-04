@@ -10,6 +10,10 @@ class MathChallengeGame {
         this.soundEnabled = true;
         this.currentLanguage = 'en';
         
+        // Timer variables
+        this.timeRemaining = 5;
+        this.timerInterval = null;
+        
         this.translations = {
             en: {
                 Easy: 'Easy',
@@ -65,6 +69,7 @@ class MathChallengeGame {
         this.continueBtn = document.getElementById('continue-btn');
         this.feedbackElement = document.getElementById('feedback');
         this.questionCounterElement = document.getElementById('question-counter-text');
+        this.timerElement = document.getElementById('timer');
         this.resultIcon = document.getElementById('result-icon');
         this.resultTitle = document.getElementById('result-title');
         this.resultMessage = document.getElementById('result-message');
@@ -281,6 +286,7 @@ class MathChallengeGame {
             this.questionElement.textContent = `${currentQ.question} = ?`;
             this.answerInput.value = '';
             this.answerInput.focus();
+            this.startTimer(); // Start timer for new question
         } else {
             this.endGame();
         }
@@ -297,6 +303,9 @@ class MathChallengeGame {
             this.showFeedback('Please enter a valid number!', 'incorrect');
             return;
         }
+        
+        // Stop timer when user answers
+        this.stopTimer();
         
         const isCorrect = userAnswer === this.currentAnswer;
         
@@ -404,6 +413,46 @@ class MathChallengeGame {
         setTimeout(() => {
             bubble.remove();
         }, 12000);
+    }
+
+    startTimer() {
+        // Step 1: Initialize timer
+        this.timeRemaining = 5;
+        this.stopTimer(); // Clear any existing timer
+        this.timerElement.textContent = this.timeRemaining;
+        this.timerElement.className = 'timer'; // Reset classes
+        
+        // Step 2: Start countdown loop
+        this.timerInterval = setInterval(() => {
+            this.timeRemaining--;
+            this.timerElement.textContent = this.timeRemaining;
+            
+            // Add visual warnings
+            if (this.timeRemaining === 2) {
+                this.timerElement.className = 'timer warning';
+            } else if (this.timeRemaining === 1) {
+                this.timerElement.className = 'timer danger';
+            }
+            
+            // Step 3: Check conditions
+            if (this.timeRemaining <= 0) {
+                this.stopTimer();
+                this.showFeedback('Time\'s up! ⏰', 'incorrect');
+                this.currentQuestionIndex++;
+                this.updateQuestionCounter();
+                
+                setTimeout(() => {
+                    this.displayQuestion();
+                }, 1500);
+            }
+        }, 1000);
+    }
+    
+    stopTimer() {
+        if (this.timerInterval) {
+            clearInterval(this.timerInterval);
+            this.timerInterval = null;
+        }
     }
 
     playSound(type) {

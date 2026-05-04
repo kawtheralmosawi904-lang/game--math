@@ -272,6 +272,52 @@ body[dir="rtl"] .sound-toggle {
     justify-content: center;
 }
 
+.timer {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    box-shadow: 0 8px 32px rgba(238, 90, 36, 0.3);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    animation: pulse 1s infinite;
+    transition: all 0.3s ease;
+}
+
+.timer.warning {
+    background: linear-gradient(135deg, #ff4757, #c44569);
+    animation: pulse-warning 0.5s infinite;
+}
+
+.timer.danger {
+    background: linear-gradient(135deg, #ff3838, #ff1744);
+    animation: pulse-danger 0.3s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes pulse-warning {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes pulse-danger {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
 .answer-input-container {
     display: flex;
     gap: 15px;
